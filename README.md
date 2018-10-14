@@ -90,3 +90,73 @@ Dennis | Menace#0040  and Turb0Yoda#2222
 
 32. reboot
 
+<h1>Server Install</h1>
+
+33. sudo apt-get install apache2
+
+34. press y and enter to confirm
+
+35. cd /etc/apache2/sites-available/ go to the apache configuration directory
+
+36. sudo nano 000-default.conf //open the document with nano text editor
+
+37. change document root to /var/www
+
+38. Ctrl+O to save. save with same filename (just hit enter)
+
+39. Ctrl+X to exit
+
+40. sudo systemctl restart apache2 *(to restart and apply configs)*
+
+41. Place any files you want to share on your network in /var/www/
+
+<h1>Accessing the files</h1>
+42. On the ubuntu machine, run ifconfig or "ip addr" to find the ip address
+
+43. On any computer on your network, open a web browser like chrome or firefox
+
+44. Enter the ip address into the url bar and hit enter
+   *-You now have access to all those files!*
+
+
+<h1>More things you can do</h1>
+45. Install and try using vim instead of nano
+  **If you get permission errors when you are working on things, look up file permissions in linux**
+  **Fairly simple commands to modify who can use what on the system. Look up chmod and chown.**
+  **We may go over these in a later workshop**
+
+46. Look up how to install a samba server.
+  *-Legit file sharing so that you can upload and download files as easily as if you plugged in a usb*
+-Use what you learned in overthewire wargames! Google it if this sentence confuses you.
+-Look up other servers that might help around the house
+-Come to events and talk to SWIFT about how you can get involved/learn with us!
+
+
+<h1>Instructions on using a different directory than /var/www/</h1>
+This step basically permits other directories to be accessed instead of just the /var/www/ directory
+47. go to /etc/apache2
+
+48. sudo nano apache2.conf
+
+49. use control w (stands for where is) to find "directory"
+  *-edit "Require all denied" to "Require all granted"*
+
+50. Ctrl+O to save. save with same filename (hit enter)
+
+51. Ctrl+X to exit
+
+52. create a directory where you want to store things for the website. (for this example, I will use /home/billy/www)
+ *-The command to do this will be "mkdir /home/billy/www"*
+
+53. edit the 'document root' in /etc/apache2/sites-available/000-default.conf like you did before, except type /home/billy/www instead.
+
+54. Restart the server and check it out!
+
+
+<h1>Instructions on setting up a home server without using any additional hardware</h1>
+(For that shared home computer)
+
+55. Install the vm as described above
+
+56. Go to the VM's settings and use a bridged adapter. This basically sets your VM to act as if it is an actual computer on your home network.
+**You should now be able to access the files on that VM from any computer on your network.**
